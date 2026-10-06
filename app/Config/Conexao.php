@@ -19,6 +19,12 @@ class Conexao
                 $user = getenv('MYSQLUSER');
                 $pass = getenv('MYSQLPASSWORD');
 
+                if (!$host || !$db || !$user) {
+                    throw new \Exception(
+                        'Variáveis do MySQL não configuradas no Railway.'
+                    );
+                }
+
                 $dsn = "mysql:host={$host};port={$port};dbname={$db};charset=utf8mb4";
 
                 $options = [
